@@ -6,12 +6,14 @@ on:
 jobs:
   assign-label:
     # You can add permissions when you want to control what actions can be taken in the workflow.
+    # Permissions, will not protect agains all possible malicious actions, but it's a good starting point.
     permissions:
-      issues: none
+      issues: read
     runs-on: ubuntu-latest
     steps:
       - name: Assign label
         if: contains(github.event.issue.title, 'bug')
+        # GitHub provides a token that you can use to authenticate on behalf of GitHub Actions.
         run: |
           curl -X POST \
           --url https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.issue.number }}/labels \
