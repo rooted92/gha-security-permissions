@@ -5,6 +5,9 @@ on:
       - opened
 jobs:
   assign-label:
+    # You can add permissions when you want to control what actions can be taken in the workflow.
+    permissions:
+      issues: none
     runs-on: ubuntu-latest
     steps:
       - name: Assign label
